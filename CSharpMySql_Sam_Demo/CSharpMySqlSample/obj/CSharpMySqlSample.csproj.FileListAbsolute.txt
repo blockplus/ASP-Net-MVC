@@ -1,0 +1,9 @@
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\bin\Debug\CSharpMySqlSample.exe
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\bin\Debug\CSharpMySqlSample.pdb
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\obj\Debug\ResolveAssemblyReference.cache
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\obj\Debug\CSharpMySqlSample.frmMySqlSample.resources
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\obj\Debug\CSharpMySqlSample.Properties.Resources.resources
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\obj\Debug\CSharpMySqlSample.csproj.GenerateResource.Cache
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\obj\Debug\CSharpMySqlSample.exe
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\obj\Debug\CSharpMySqlSample.pdb
+C:\Shabdar\CSharpMySqlSample\CSharpMySqlSample\bin\Debug\CSharpMySqlSample.exe.config
