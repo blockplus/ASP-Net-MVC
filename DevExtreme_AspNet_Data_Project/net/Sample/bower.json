@@ -1,0 +1,7 @@
+{
+    "name": "Sample",
+    "private": true,
+    "dependencies": {
+        "devextreme": "16.1.4"
+    }
+}

@@ -1,0 +1,13 @@
+<script src="test-deps.js"></script>
+<script>
+    TEST_DEPS.forEach(function(i) {
+        document.write("<script src='" + i + "'></scr" + "ipt>");
+    });
+</script>
+
+<link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
+<script src="../node_modules/qunitjs/qunit/qunit.js"></script>
+
+<div id="qunit"></div>
+
+<script src="test.js"></script>

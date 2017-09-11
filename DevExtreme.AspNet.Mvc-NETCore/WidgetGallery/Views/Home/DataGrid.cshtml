@@ -1,0 +1,69 @@
+﻿@(Html.DevExtreme().DataGrid()
+    .Columns(columns => {
+        columns.Add()
+            .DataField("CustomerID")
+            .Caption("Сustomer")
+            .Lookup(lookup => lookup
+                .DataSource(d => d.WebApi().Controller("GridData").LoadAction("CustomersLookup").Key("Value"))
+                .ValueExpr("Value")
+                .DisplayExpr("Text")
+            );
+
+        columns.Add()
+            .DataField("OrderDate")
+            .DataType(GridColumnDataType.Date);
+
+        columns.Add()
+            .DataField("Freight")
+            .HeaderFilter(f => f.GroupInterval(100));
+
+        columns.Add()
+            .DataField("ShipCountry");
+
+        columns.Add()
+            .DataField("ShipRegion");
+
+        columns.Add()
+            .DataField("ShipVia")
+            .Caption("Shipping Company")
+            .Lookup(lookup => lookup
+                .DataSource(d => d.WebApi().Controller("GridData").LoadAction("ShippersLookup").Key("Value"))
+                .ValueExpr("Value")
+                .DisplayExpr("Text")
+            );
+
+    })
+    .DataSource(d => d.WebApi().Controller("GridData").Key("OrderID"))
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+    .Height(600)
+    .ShowBorders(true)
+    .MasterDetail(md => md
+        .Enabled(true)
+        .Template(@<text>
+
+            @(Html.DevExtreme().DataGrid()
+                .DataSource(d => d.WebApi()
+                    .Controller("GridData")
+                    .LoadAction("OrderDetails")
+                    .LoadParams(new { orderID = new JS("data.OrderID") })
+                )
+            )
+
+        </text>)
+    )
+    .Editing(e => e.AllowAdding(true).AllowDeleting(true).AllowUpdating(true))
+    .RemoteOperations(true)
+    .Grouping(g => g.AutoExpandAll(false))
+    .Summary(s => s
+        .TotalItems(totalItems => {
+            totalItems.Add().Column("Freight").SummaryType(SummaryType.Sum);
+        })
+        .GroupItems(groupItems => {
+            groupItems.Add().Column("Freight").SummaryType(SummaryType.Sum);
+            groupItems.Add().SummaryType(SummaryType.Count);
+        })
+    )
+)

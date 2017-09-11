@@ -1,0 +1,47 @@
+﻿@(Html.DevExtreme().Scheduler()
+        .DataSource(d => d.WebApi()
+            .Controller("SchedulerData")
+            .LoadAction("Appointments")
+            .Key("OrderID")
+        )
+        .StartDateExpr("OrderDate")
+        .EndDateExpr("ShippedDate")
+        .TextExpr("CustomerName")
+        .RemoteFiltering(true)
+        .Groups(new [] { "ShipVia" })
+        .Resources(res => {
+            res.Add()
+                .FieldExpr("ShipVia")
+                .Label("Shipper")
+                .AllowMultiple(false)
+                .DataSource(x => x.WebApi()
+                    .Controller("SchedulerData")
+                    .LoadAction("Resources")
+                );
+        })
+        .RecurrenceRuleExpr("")
+        .CurrentDate(new DateTime(1997, 7, 4))
+        .Views(new SchedulerView[] {
+            SchedulerView.Month,
+            SchedulerView.Agenda
+        })
+        .CurrentView(SchedulerView.Month)
+        .Editing(e => e.AllowAdding(false).AllowDeleting(false))
+        .OnAppointmentFormCreated("scheduler_appointmentFormCreated")
+        .Height(600)
+)
+
+<script>
+
+    function scheduler_appointmentFormCreated(e) {
+        var form = e.form;
+
+        form.itemOption("CustomerName", { label: { text: "Customer" }, editorOptions: { readOnly: true } });
+        form.itemOption("OrderDate", { label: { text: "Order Date" } });
+        form.itemOption("ShippedDate", { label: { text: "Shipped Date" } });
+
+        form.itemOption("allDay", { visible: false });
+        form.itemOption("description", { visible: false });
+    }
+
+</script>
